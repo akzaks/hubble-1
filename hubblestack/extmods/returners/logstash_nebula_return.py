@@ -32,7 +32,6 @@ import time
 import socket
 import requests
 from datetime import datetime
-from aws_details import get_aws_details
 from requests.auth import HTTPBasicAuth
 
 
@@ -40,8 +39,6 @@ def returner(ret):
     '''
     '''
     opts_list = _get_options()
-
-    aws = get_aws_details()
 
     for opts in opts_list:
         proxy = opts['proxy']
@@ -85,11 +82,6 @@ def returner(ret):
                         event.update({'minion_id': minion_id})
                         event.update({'dest_host': fqdn})
                         event.update({'dest_ip': fqdn_ip4})
-
-                        if aws['aws_account_id'] is not None:
-                            event.update({'aws_ami_id': aws['aws_ami_id']})
-                            event.update({'aws_instance_id': aws['aws_instance_id']})
-                            event.update({'aws_account_id': aws['aws_account_id']})
 
                         for custom_field in custom_fields:
                             custom_field_name = 'custom_' + custom_field

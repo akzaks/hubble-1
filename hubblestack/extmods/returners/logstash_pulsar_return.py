@@ -32,7 +32,6 @@ import time
 import json
 import requests
 from collections import defaultdict
-from aws_details import get_aws_details
 from requests.auth import HTTPBasicAuth
 
 
@@ -51,8 +50,6 @@ def returner(ret):
         return
 
     opts_list = _get_options()
-
-    aws = get_aws_details()
 
     for opts in opts_list:
         proxy = opts['proxy']
